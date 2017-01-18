@@ -199,4 +199,5 @@
     <string name="slide_2_title">Personalizar</string>
     <string name="slide_3_desc">Defina modos de andado personalizados y las notificaciones si su meta diaria está en peligro.</string>
     <string name="slide_3_title">Notificaciones</string>
+    <string name="action_speed">Velocidad</string>
 </resources>

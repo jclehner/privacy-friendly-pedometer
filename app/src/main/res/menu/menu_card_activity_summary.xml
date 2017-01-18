@@ -10,5 +10,8 @@
         <item
             android:id="@+id/menu_calories"
             android:title="@string/action_calories" />
+        <item
+            android:id="@+id/menu_speed"
+            android:title="@string/action_speed" />
     </group>
 </menu>

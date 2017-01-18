@@ -3,6 +3,7 @@ package org.secuso.privacyfriendlyactivitytracker.models;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.secuso.privacyfriendlyactivitytracker.R;
 import org.secuso.privacyfriendlyactivitytracker.utils.UnitUtil;
@@ -79,6 +80,20 @@ public class StepCount {
         float bodyWeight = Float.parseFloat(sharedPref.getString(context.getString(R.string.pref_weight),context.getString(R.string.pref_default_weight)));
         return bodyWeight * METRIC_AVG_FACTOR * UnitUtil.metersToKilometers(getDistance());
     }
+
+    /**
+     * Gets the walking speed in this interval.
+     *
+     * @return The speed in kilometers per hour
+     */
+    public double getSpeed() {
+        if (getEndTime() > getStartTime()) {
+            return 3.6 * (getDistance() / ((getEndTime() - getStartTime()) / 1000.0));
+        } else {
+            return 0.0;
+        }
+    }
+
     @Override
     public String toString() {
         return "StepCount{" +

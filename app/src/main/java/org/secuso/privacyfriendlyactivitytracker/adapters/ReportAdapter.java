@@ -213,6 +213,10 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
                             dataMap = chartData.getCalories();
                             label = chartViewHolder.context.getString(R.string.calories);
                             break;
+                        case SPEED:
+                            dataMap = chartData.getSpeeds();
+                            label = chartViewHolder.context.getString(R.string.action_speed);
+                            break;
                         case STEPS:
                         default:
                             dataMap = chartData.getSteps();
@@ -258,6 +262,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
                         float val = Double.valueOf(dataEntry.getValue().getValue()).floatValue();
                         if (chartData.getDisplayedDataType() == ActivityDayChart.DataType.DISTANCE) {
                             val = Double.valueOf(UnitUtil.kilometerToUsersLengthUnit(UnitUtil.metersToKilometers(val), chartViewHolder.context)).floatValue();
+                        } else if (chartData.getDisplayedDataType() == ActivityDayChart.DataType.SPEED) {
+                            val = Double.valueOf(UnitUtil.kilometersPerHourToUsersVelocityUnit(val, chartViewHolder.context)).floatValue();
                         }
                         Entry chartEntry;
                         if (i > 0 && lastWalkingModeId != walkingModeId) {
@@ -459,6 +465,9 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
                     break;
                 case R.id.menu_calories:
                     dataType = ActivityDayChart.DataType.CALORIES;
+                    break;
+                case R.id.menu_speed:
+                    dataType = ActivityDayChart.DataType.SPEED;
                     break;
                 default:
                     return false;

@@ -13,13 +13,15 @@ public class ActivityDayChart {
     private Map<String, ActivityChartDataSet> steps;
     private Map<String, ActivityChartDataSet> distance;
     private Map<String, ActivityChartDataSet> calories;
+    private Map<String, ActivityChartDataSet> speeds;
     private DataType displayedDataType;
     private int goal;
-    public ActivityDayChart(Map<String, ActivityChartDataSet> steps, Map<String, ActivityChartDataSet> distance, Map<String, ActivityChartDataSet> calories, String title) {
+    public ActivityDayChart(Map<String, ActivityChartDataSet> steps, Map<String, ActivityChartDataSet> distance, Map<String, ActivityChartDataSet> calories, Map<String, ActivityChartDataSet> speeds, String title) {
         this.steps = steps;
         this.title = title;
         this.distance = distance;
         this.calories = calories;
+        this.speeds = speeds;
     }
 
     public String getTitle() {
@@ -54,6 +56,14 @@ public class ActivityDayChart {
         this.calories = calories;
     }
 
+    public Map<String, ActivityChartDataSet> getSpeeds() {
+        return speeds;
+    }
+
+    public void setSpeeds(Map<String, ActivityChartDataSet> speeds) {
+        this.speeds = speeds;
+    }
+
     public DataType getDisplayedDataType() {
         return displayedDataType;
     }
@@ -71,6 +81,6 @@ public class ActivityDayChart {
     }
 
     public enum DataType {
-        STEPS, DISTANCE, CALORIES
+        STEPS, DISTANCE, CALORIES, SPEED
     }
 }

@@ -190,4 +190,5 @@
     <string name="slide_2_desc_two">Sie können Ihren aktuellen Laufmodus wechseln, indem Sie sie in der Toolbar auswählen.</string>
     <string name="slide_3_title">Benachritigungen</string>
     <string name="slide_3_desc">Die App kann Sie benachrichtigen, wenn Ihr tägliches Schrittziel Gefahr droht, nicht erreicht zu werden. Sie finden dies in den Einstellungen.</string>
+    <string name="action_speed">Geschwindigkeit</string>
 </resources>

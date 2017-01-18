@@ -264,6 +264,7 @@ public class DailyReportFragment extends Fragment implements ReportAdapter.OnIte
         Map<String, ActivityChartDataSet> stepData = new LinkedHashMap<>();
         Map<String, ActivityChartDataSet> distanceData = new LinkedHashMap<>();
         Map<String, ActivityChartDataSet> caloriesData = new LinkedHashMap<>();
+        Map<String, ActivityChartDataSet> speedData = new LinkedHashMap<>();
         WalkingMode wm = null;
         int hour = -1;
 
@@ -306,6 +307,7 @@ public class DailyReportFragment extends Fragment implements ReportAdapter.OnIte
                 stepData.put(formatHourMinute.format(end.getTime()), new ActivityChartDataSet(stepCount, s));
                 distanceData.put(formatHourMinute.format(end.getTime()), new ActivityChartDataSet(distance, s));
                 caloriesData.put(formatHourMinute.format(end.getTime()), new ActivityChartDataSet(calories, s));
+                speedData.put(formatHourMinute.format(end.getTime()), new ActivityChartDataSet(s.getSpeed(), s));
             }
         }
 
@@ -318,6 +320,7 @@ public class DailyReportFragment extends Fragment implements ReportAdapter.OnIte
                 stepData.put(h + ":00", null);
                 distanceData.put(h + ":00", null);
                 caloriesData.put(h + ":00", null);
+                speedData.put(h + ":00", null);
             }
         }
 
@@ -335,13 +338,14 @@ public class DailyReportFragment extends Fragment implements ReportAdapter.OnIte
         }
 
         if (activityChart == null) {
-            activityChart = new ActivityDayChart(stepData, distanceData, caloriesData, simpleDateFormat.format(day.getTime()));
+            activityChart = new ActivityDayChart(stepData, distanceData, caloriesData, speedData, simpleDateFormat.format(day.getTime()));
             activityChart.setDisplayedDataType(ActivityDayChart.DataType.STEPS);
             reports.add(activityChart);
         } else {
             activityChart.setSteps(stepData);
             activityChart.setDistance(distanceData);
             activityChart.setCalories(caloriesData);
+            activityChart.setSpeeds(speedData);
             activityChart.setTitle(simpleDateFormat.format(day.getTime()));
         }
         String d = sharedPref.getString(context.getString(R.string.pref_daily_step_goal), "10000");
@@ -389,6 +393,9 @@ public class DailyReportFragment extends Fragment implements ReportAdapter.OnIte
                 break;
             case CALORIES:
                 menu.findItem(R.id.menu_calories).setChecked(true);
+                break;
+            case SPEED:
+                menu.findItem(R.id.menu_speed).setChecked(true);
                 break;
             case STEPS:
             default:
